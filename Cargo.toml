@@ -1,5 +1,5 @@
 [package]
-name = "rust-hypertls-microservice"
+name = "hypertls-microservice"
 version = "0.1.0"
 edition = "2021"
 

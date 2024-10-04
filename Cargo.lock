@@ -390,6 +390,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "hypertls-microservice"
+version = "0.1.0"
+dependencies = [
+ "http",
+ "http-body-util",
+ "hyper",
+ "hyper-util",
+ "rustls",
+ "rustls-pemfile",
+ "rustls-pki-types",
+ "tokio",
+ "tokio-rustls",
+]
+
+[[package]]
 name = "indexmap"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -666,21 +681,6 @@ dependencies = [
  "spin",
  "untrusted",
  "windows-sys",
-]
-
-[[package]]
-name = "rust-hypertls-microservice"
-version = "0.1.0"
-dependencies = [
- "http",
- "http-body-util",
- "hyper",
- "hyper-util",
- "rustls",
- "rustls-pemfile",
- "rustls-pki-types",
- "tokio",
- "tokio-rustls",
 ]
 
 [[package]]
