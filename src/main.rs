@@ -32,7 +32,8 @@ async fn run_server() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         Some(ref p) => p.parse()?,
         None => 1337,
     };
-    let addr = SocketAddr::new(Ipv4Addr::UNSPECIFIED.into(), port);
+    //let addr = SocketAddr::new(Ipv4Addr::"UNSPECIFIED.into(), port);
+    let addr = SocketAddr::new(Ipv4Addr::new(0, 0, 0, 0).into(), port);
 
     // Load public certificate.
     let certs = load_certs("certs/ssl.cert")?;
