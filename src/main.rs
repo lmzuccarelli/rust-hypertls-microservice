@@ -15,7 +15,8 @@ use tokio_rustls::TlsAcceptor;
 
 fn main() {
     // Serve an echo service over HTTPS, with proper error handling.
-    if let Err(e) = run_server() {
+    let args: Vec<String> = env::args().collect();
+    if let Err(e) = run_server(args[1].to_string()) {
         eprintln!("FAILED: {}", e);
         std::process::exit(1);
     }
@@ -26,7 +27,7 @@ fn error(err: String) -> io::Error {
 }
 
 #[tokio::main]
-async fn run_server() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+async fn run_server(certs_path: String) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     // First parameter is port number (optional, defaults to 1337)
     let port = match env::args().nth(1) {
         Some(ref p) => p.parse()?,
@@ -36,9 +37,9 @@ async fn run_server() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let addr = SocketAddr::new(Ipv4Addr::new(0, 0, 0, 0).into(), port);
 
     // Load public certificate.
-    let certs = load_certs("certs/ssl.cert")?;
+    let certs = load_certs(&format!("{}/certs/ssl.cert", certs_path))?;
     // Load private key.
-    let key = load_private_key("certs/ssl.key")?;
+    let key = load_private_key(&format!("{}/certs/ssl.key", certs_path))?;
 
     println!("Starting to serve on https://{}", addr);
 
